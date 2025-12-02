@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobHub - Job Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>💼 JobHub</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" data-page="browse">Browse Jobs</a></li>
+                <li><a href="#" data-page="post">Post Job</a></li>
+                <li><a href="#" data-page="dashboard">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <!-- Browse Jobs Page -->
+        <section id="browse-page" class="page active">
+            <div class="browse-header">
+                <h2>Find Your Dream Job</h2>
+                <p>Explore thousands of job opportunities</p>
+            </div>
+
+            <!-- Search and Filter Section -->
+            <div class="search-filter-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Search by job title, company..."
+                        class="search-input"
+                    >
+                    <button class="btn-search">🔍</button>
+                </div>
+
+                <div class="filters">
+                    <select id="category-filter" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Mobile Development">Mobile Development</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="UI/UX Design">UI/UX Design</option>
+                        <option value="DevOps">DevOps</option>
+                        <option value="Business">Business</option>
+                    </select>
+
+                    <select id="salary-filter" class="filter-select">
+                        <option value="">All Salaries</option>
+                        <option value="0-3">₹0 - ₹3 LPA</option>
+                        <option value="3-5">₹3 - ₹5 LPA</option>
+                        <option value="5-8">₹5 - ₹8 LPA</option>
+                        <option value="8-12">₹8 - ₹12 LPA</option>
+                        <option value="12+">₹12+ LPA</option>
+                    </select>
+
+                    <select id="experience-filter" class="filter-select">
+                        <option value="">All Experience</option>
+                        <option value="0">Fresher</option>
+                        <option value="1">1 Year</option>
+                        <option value="2">2 Years</option>
+                        <option value="3">3+ Years</option>
+                    </select>
+
+                    <button id="reset-filters" class="btn-secondary">Reset Filters</button>
+                </div>
+            </div>
+
+            <!-- Jobs Display -->
+            <div class="jobs-container" id="jobs-container">
+                <!-- Jobs will be dynamically inserted here -->
+            </div>
+
+            <!-- No Results Message -->
+            <div id="no-results" class="no-results" style="display: none;">
+                <p>😞 No jobs found matching your criteria</p>
+            </div>
+        </section>
+
+        <!-- Post Job Page -->
+        <section id="post-page" class="page">
+            <div class="post-header">
+                <h2>Post a New Job</h2>
+                <p>Help talented professionals find their next opportunity</p>
+            </div>
+
+            <form id="job-form" class="job-form">
+                <div class="form-group">
+                    <label for="job-title">Job Title *</label>
+                    <input 
+                        type="text" 
+                        id="job-title" 
+                        placeholder="e.g., Senior React Developer"
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company-name">Company Name *</label>
+                        <input 
+                            type="text" 
+                            id="company-name" 
+                            placeholder="e.g., Tech Innovations Inc."
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="company-location">Location *</label>
+                        <input 
+                            type="text" 
+                            id="company-location" 
+                            placeholder="e.g., Bangalore, India"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="job-category">Category *</label>
+                        <select id="job-category" required>
+                            <option value="">Select Category</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Mobile Development">Mobile Development</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="Business">Business</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="job-type">Job Type *</label>
+                        <select id="job-type" required>
+                            <option value="">Select Type</option>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="salary-min">Minimum Salary (LPA) *</label>
+                        <input 
+                            type="number" 
+                            id="salary-min" 
+                            placeholder="3"
+                            min="0"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="salary-max">Maximum Salary (LPA) *</label>
+                        <input 
+                            type="number" 
+                            id="salary-max" 
+                            placeholder="5"
+                            min="0"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="experience-required">Experience Required (Years) *</label>
+                        <input 
+                            type="number" 
+                            id="experience-required" 
+                            placeholder="2"
+                            min="0"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="job-description">Job Description *</label>
+                    <textarea 
+                        id="job-description" 
+                        placeholder="Describe the role, responsibilities, and requirements..."
+                        rows="6"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="required-skills">Required Skills (comma-separated) *</label>
+                    <input 
+                        type="text" 
+                        id="required-skills" 
+                        placeholder="e.g., React, JavaScript, Node.js, MongoDB"
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="posted-by">Posted By (Name) *</label>
+                        <input 
+                            type="text" 
+                            id="posted-by" 
+                            placeholder="Your name"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Contact Email *</label>
+                        <input 
+                            type="email" 
+                            id="contact-email" 
+                            placeholder="your.email@example.com"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary btn-large">Post Job</button>
+                <button type="reset" class="btn-secondary btn-large">Clear Form</button>
+            </form>
+
+            <div id="success-message" class="success-message" style="display: none;">
+                ✅ Job posted successfully!
+            </div>
+        </section>
+
+        <!-- Dashboard Page -->
+        <section id="dashboard-page" class="page">
+            <div class="dashboard-header">
+                <h2>Dashboard</h2>
+                <p>View statistics and manage posted jobs</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-jobs">0</div>
+                    <div class="stat-label">Total Jobs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-categories">0</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avg-salary">0</div>
+                    <div class="stat-label">Avg Salary (LPA)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="fresh-positions">0</div>
+                    <div class="stat-label">Fresher Positions</div>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>Posted Jobs</h3>
+                <div class="posted-jobs-list" id="posted-jobs-list">
+                    <!-- Posted jobs will be listed here -->
+                </div>
+                <div id="no-posted-jobs" class="no-results">
+                    <p>No jobs posted yet</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Job Details Modal -->
+    <div id="job-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body">
+                <!-- Job details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
